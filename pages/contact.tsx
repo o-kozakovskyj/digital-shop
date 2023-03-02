@@ -1,11 +1,10 @@
 import Layout from "@/components/Layout";
-import Info from "@/components/Info";
+import ContactUs from "@/components/ContactUs";
 
-const ContactPage = () => {
+const ContactPage:React.FC = () => {
   return (
     <Layout>
-      <h1>Contact</h1>
-      <Info />
+      <ContactUs />
     </Layout>
   );
 };
