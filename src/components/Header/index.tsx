@@ -1,105 +1,80 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
-import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import MenuIcon from '@mui/icons-material/Menu';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import { AppBar, Box, Divider, List, Toolbar, Button } from '@mui/material';
 import Link from 'next/link';
-import * as Styled from './Header.styled';
+import { ShoppingBasket, Menu } from '@mui/icons-material';
 import Logo from '../Logo';
+import * as Styled from './Header.styled';
 
-interface Props {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
+interface HeaderProps {
   window?: () => Window;
 }
+const navItems = ['home', 'features', 'contact', 'login'];
 
-const drawerWidth = 240;
-const navItems = ['home','features', 'contact', 'login'];
-
-const Header = (props: Props) => {
+const Header = (props: HeaderProps) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
-
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{textAlign: 'center'}}>
+    <Box onClick={handleDrawerToggle}>
       <Logo />
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item} />
-            </ListItemButton>
-          </ListItem>
+          <Styled.SideMenuItem key={item}>
+            <Link href={item === 'home' ? '/' : `/${item}`} passHref legacyBehavior>
+              <Styled.Link>
+                {item.toUpperCase()}
+              </Styled.Link>
+            </Link>
+          </Styled.SideMenuItem>
         ))}
+        <Link href={"/cart"} passHref legacyBehavior>
+          <Styled.Link>
+            <ShoppingBasket fontSize="inherit" />
+          </Styled.Link>
+        </Link>
       </List>
     </Box>
   );
-
   const container = window !== undefined ? () => window().document.body : undefined;
-
   return (
-    <Box sx={{ display: 'flex'}}>
+    <Styled.HeaderBox>
       <AppBar component="nav">
-        <Toolbar sx={{ display: 'flex', justifyContent: "space-between" }}>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Box sx={{ display: { xs: 'none', sm: 'flex' }}}>
+        <Toolbar>
+          <Styled.MenuButton onClick={handleDrawerToggle}>
+            <Menu />
+          </Styled.MenuButton>
+          <Box>
             <Logo />
           </Box>
-          <Box sx={{ display: { xs: 'none', sm: 'flex' } }}>
+          <Styled.HeaderMenuBox>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#5a5a5e' }}>
+              <Button key={item}>
                 <Link href={item === 'home' ? '/' : `/${item}`} passHref legacyBehavior>
-                  <Styled.Link>{item}</Styled.Link> 
+                  <Styled.Link>{item}</Styled.Link>
                 </Link>
               </Button>
             ))}
-          </Box>
+            <Link href={"/cart"} passHref legacyBehavior>
+              <Styled.Link>
+                <ShoppingBasket fontSize="inherit" />
+              </Styled.Link>
+            </Link>
+          </Styled.HeaderMenuBox>
         </Toolbar>
       </AppBar>
       <Box component="nav">
-        <Drawer
+        <Styled.SideMenuBox
           container={container}
-          variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-          sx={{
-            display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-          }}
         >
           {drawer}
-        </Drawer>
+        </Styled.SideMenuBox>
       </Box>
-
-    </Box>
+    </Styled.HeaderBox>
   );
 }
 export default Header;
