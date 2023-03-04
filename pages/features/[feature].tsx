@@ -1,14 +1,13 @@
 
 
-import Section from "@/components/Features/Feature"
+import FeaturePage from "@/components/FeaturePage"
 import Layout from "@/components/Layout"
-import { useRouter } from "next/router"
 
 
 const Card:React.FC = () => {
   return (
     <Layout>
-      <Section/>
+      <FeaturePage/>
     </Layout>
     
   )
