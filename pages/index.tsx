@@ -1,11 +1,11 @@
 import Layout from '@/components/Layout'
-import MainBanner from '@/components/MainBanner'
+import MainBanner1 from '@/components/MainBanner1'
 
 export default function Home() {
   return (
     <>
       <Layout>
-      <MainBanner />
+      <MainBanner1 />
       </Layout> 
     </>
   )
