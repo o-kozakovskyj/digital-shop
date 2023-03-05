@@ -16,10 +16,10 @@ const MainBanner1: React.FC = () => {
         </Styled.Text>
         <Button>
           <Link href={"/features"} passHref legacyBehavior>
-            <Styled.Link>
+            <Styled.LinkAnchor>
               Explore our features
               <ArrowForwardIcon />
-            </Styled.Link>
+            </Styled.LinkAnchor>
           </Link>
         </Button>
       </Styled.TextBox>

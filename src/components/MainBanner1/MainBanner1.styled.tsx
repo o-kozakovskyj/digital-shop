@@ -45,7 +45,7 @@ export const ImageBox = styled(Box)`
     display: none;
   }
 `;
-export const Link = styled.a`
+export const LinkAnchor = styled.a`
   display: flex;
   color: #008c8e;
   text-decoration: none;

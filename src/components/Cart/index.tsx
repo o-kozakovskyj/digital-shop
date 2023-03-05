@@ -1,28 +1,40 @@
-import { Clear, Delete, DeleteOutline } from "@mui/icons-material";
-import { Box, Button, Table, TableBody, TableCell, TableFooter, TableHead, TableRow, Typography } from "@mui/material";
-import cart from "public/cart";
+import { Clear } from "@mui/icons-material";
+import { IconButton, Table, TableBody, TableCell, TableRow, Typography } from "@mui/material";
+import { selectCart, deleteFeature } from "./CartSlice";
 import * as Styled from "./Cart.styled";
+import Feature from "@/entitles/feature";
+import { useDispatch, useSelector } from "react-redux";
 
-const Cart = () => {
+const Cart:React.FC = () => {
+  const dispatch = useDispatch();
+  const cartList = useSelector(selectCart);
+  const total = cartList.reduce((acc, item) => acc + item.price, 0) || 0;
+  const handleDelete = (id: number) => {
+    dispatch(deleteFeature(id));
+  };
 
   return (
     <Styled.CartBox>
       <Typography variant="h6">Cart</Typography>
       <Table >
       <TableBody>
-        {cart.map((item) => (
+        {cartList.map((item: Feature) => (
           <TableRow key={item.id}>
             <TableCell>{item.title}</TableCell>
             <TableCell align="right">
-              {item.price}$<Button>
-                <Clear fontSize="inherit" color="secondary"/>
-              </Button>
-            </TableCell>       
+              {item.price}$
+              <IconButton onClick={()=>handleDelete(item.id)}>
+                <Clear 
+                fontSize="inherit" 
+                color="secondary" 
+                 />
+              </IconButton>
+            </TableCell>
           </TableRow>
         ))}
         <TableRow>
           <Styled.Cell>Total</Styled.Cell>
-          <Styled.Cell align="right">{80}$</Styled.Cell>
+          <Styled.Cell align="right">{total}$</Styled.Cell>
         </TableRow>
       </TableBody>
       </Table>

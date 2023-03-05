@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { AppBar, Box, Divider, List, Toolbar, Button } from '@mui/material';
+import { AppBar, Box, Divider, List, Toolbar, Button, Badge } from '@mui/material';
 import Link from 'next/link';
 import { ShoppingBasket, Menu } from '@mui/icons-material';
 import Logo from '../Logo';
 import * as Styled from './Header.styled';
+import { useSelector } from 'react-redux';
+import { selectCart } from '../Cart/CartSlice';
 
 interface HeaderProps {
   window?: () => Window;
@@ -11,6 +13,7 @@ interface HeaderProps {
 const navItems = ['home', 'features', 'contact', 'login'];
 
 const Header = (props: HeaderProps) => {
+  const cartList = useSelector(selectCart);
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const handleDrawerToggle = () => {
@@ -24,16 +27,18 @@ const Header = (props: HeaderProps) => {
         {navItems.map((item) => (
           <Styled.SideMenuItem key={item}>
             <Link href={item === 'home' ? '/' : `/${item}`} passHref legacyBehavior>
-              <Styled.Link>
+              <Styled.LinkAnchor>
                 {item.toUpperCase()}
-              </Styled.Link>
+              </Styled.LinkAnchor>
             </Link>
           </Styled.SideMenuItem>
         ))}
         <Link href={"/cart"} passHref legacyBehavior>
-          <Styled.Link>
-            <ShoppingBasket fontSize="inherit" />
-          </Styled.Link>
+          <Styled.LinkAnchor>
+            <Badge badgeContent={cartList.length} color="error">
+              <ShoppingBasket fontSize="medium" />
+            </Badge>
+          </Styled.LinkAnchor>
         </Link>
       </List>
     </Box>
@@ -53,14 +58,16 @@ const Header = (props: HeaderProps) => {
             {navItems.map((item) => (
               <Button key={item}>
                 <Link href={item === 'home' ? '/' : `/${item}`} passHref legacyBehavior>
-                  <Styled.Link>{item}</Styled.Link>
+                  <Styled.LinkAnchor>{item}</Styled.LinkAnchor>
                 </Link>
               </Button>
             ))}
             <Link href={"/cart"} passHref legacyBehavior>
-              <Styled.Link>
-                <ShoppingBasket fontSize="inherit" />
-              </Styled.Link>
+              <Styled.LinkAnchor>
+              <Badge badgeContent={cartList.length} color="error">
+                <ShoppingBasket fontSize="medium" />
+              </Badge>
+              </Styled.LinkAnchor>
             </Link>
           </Styled.HeaderMenuBox>
         </Toolbar>

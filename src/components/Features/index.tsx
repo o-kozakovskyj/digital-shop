@@ -1,7 +1,7 @@
 import { Box, ImageList, ImageListItem } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import data from "public/data";
+import data from "@/common/data/data";
 import * as Styled from "./Features.styled";
 
 const Features = () => {
@@ -10,12 +10,12 @@ const Features = () => {
       {data.map(item => {
         return (
           <ImageListItem key={item.id}>
-            <Link href={`/features/${item.id}`}>
-              <Styled.Link>
+            <Link href={`/features/${item.id}`} passHref legacyBehavior>
+              <Styled.LinkAnchor>
                 <Box sx={{ display: "flex", alignItems: "center" }}>
                   <Image src={item.image} alt={item.title} width={200} height={300} />
                 </Box>
-              </Styled.Link>
+              </Styled.LinkAnchor>
 
             </Link>
           </ImageListItem>

@@ -10,7 +10,7 @@ margin:80px auto;
 }
   .MuiTable-root {
     width: 100%;
-    max-width: 800px;
+    max-width: 600px;
     margin: 0 auto;
     
     border-radius: 4px;

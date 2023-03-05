@@ -1,4 +1,4 @@
-import Book from "@/entitles/book";
+import Book from "@/entitles/feature";
 import axios from "axios";
 
 const options = {

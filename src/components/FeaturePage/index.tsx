@@ -1,7 +1,9 @@
 import { useRouter } from 'next/router';
-import data from 'public/data';
-import { Paper, Box, Typography, Button } from '@mui/material';
+import data from '@/common/data/data';
+import { Box, Typography } from '@mui/material';
 import Image from 'next/image';
+import { useDispatch } from "react-redux";
+import { addFeature } from "../Cart/CartSlice";
 import * as Styled from './FeaturePage.styled';
 
 const FeaturePage = () => {
@@ -9,6 +11,7 @@ const FeaturePage = () => {
   const id = Number(useRouter().query.feature);
 const featureData= data.find(item => item.id === id);
 if (!featureData) return null;
+const dispatch=useDispatch();
   return (
     <Styled.FeatureContainer>
       <Box>
@@ -19,7 +22,9 @@ if (!featureData) return null;
         <Typography variant="h6" >{featureData.author}</Typography>
         <Typography variant="body1">{featureData.description}</Typography>
         <Typography variant="h4">{featureData.price}$</Typography>
-        <Styled.ToCartButton variant="contained" >Add to cart</Styled.ToCartButton>
+        <Styled.ToCartButton variant="contained" onClick={()=>dispatch(addFeature(featureData))}>
+          Add to cart
+        </Styled.ToCartButton>
       </Styled.FeatureText>
     </Styled.FeatureContainer>
   );

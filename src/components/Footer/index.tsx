@@ -14,7 +14,7 @@ export default function StickyFooter() {
           <Styled.FooterMenuBox>
             {navItems.map((item) => (    
                 <Link href={item === 'home' ? '/' : `/${item}`}key={item} passHref legacyBehavior>
-                  <Styled.Link>{item.toUpperCase()}</Styled.Link>
+                  <Styled.LinkAnchor>{item.toUpperCase()}</Styled.LinkAnchor>
                 </Link>
             ))}
           </Styled.FooterMenuBox>

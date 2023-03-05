@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Link = styled.a`
+export const LinkAnchor = styled.a`
   color: #5a5a5e;
   text-decoration: none;
   font-size: 0.8rem;

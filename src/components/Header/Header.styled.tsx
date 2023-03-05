@@ -2,7 +2,7 @@ import { Drawer, IconButton, ListItem } from "@mui/material";
 import { Box } from "@mui/system";
 import styled from "styled-components";
 
-export const Link = styled.a`
+export const LinkAnchor = styled.a`
   color: #5a5a5e;
   text-decoration: none;
   padding: 0.5rem 1rem;

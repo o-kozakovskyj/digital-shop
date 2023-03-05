@@ -5,8 +5,8 @@ import { Provider } from 'react-redux';
 import { CacheProvider, EmotionCache } from '@emotion/react';
 import createEmotionCache from '@/theme/createEmotionCache';
 import Head from 'next/head';
-import { store } from 'store';
-
+import { store, persistor } from 'store';
+import { PersistGate } from 'redux-persist/integration/react'
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
@@ -16,7 +16,8 @@ const MyApp: React.FunctionComponent<MyAppProps> = props => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   return (
   <Provider store={store}>
-    <Head>
+    <PersistGate loading={null} persistor={persistor}>
+      <Head>
       <title>Digital shop</title>
       <meta name="description" content="Live sport matches" />
       <link rel="icon" href="/images/favicon.ico" />
@@ -27,6 +28,8 @@ const MyApp: React.FunctionComponent<MyAppProps> = props => {
         <Component {...pageProps} />
       </ThemeProvider>
     </CacheProvider>
+    </PersistGate>
+    
     </Provider>
   );
 };

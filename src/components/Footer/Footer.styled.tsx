@@ -38,7 +38,7 @@ export const FooterMenuBox = styled(Box)`
   display: flex;
   flex-direction: column;
 `
-export const Link = styled.a`
+export const LinkAnchor = styled.a`
   color: #5a5a5e;
   text-decoration: none;
   font-size: 0.8rem;
