@@ -1,8 +1,9 @@
 import { Clear } from "@mui/icons-material";
-import { IconButton, Table, TableBody, TableCell, TableRow, Typography } from "@mui/material";
+import { Box, IconButton, Table, TableBody, TableCell, TableRow, Typography } from "@mui/material";
 import { selectCart, deleteFeature } from "./CartSlice";
 import * as Styled from "./Cart.styled";
 import Feature from "@/entitles/feature";
+import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 
 const Cart:React.FC = () => {
@@ -20,7 +21,13 @@ const Cart:React.FC = () => {
       <TableBody>
         {cartList.map((item: Feature) => (
           <TableRow key={item.id}>
-            <TableCell>{item.title}</TableCell>
+            <TableCell>
+            <Styled.ImageBox >
+                <Image src={item.image} alt={item.title} width={20} height={30} />
+              <Styled.Title>{item.title}</Styled.Title>
+              </Styled.ImageBox>
+              
+              </TableCell>
             <TableCell align="right">
               {item.price}$
               <IconButton onClick={()=>handleDelete(item.id)}>

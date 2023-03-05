@@ -6,7 +6,6 @@
   image: "https://nordicapis.com/wp-content/uploads/developer-experience-ebook-768x1152.png",
   description: "Our top advice on improving API developer experience. Explore tips to streamline the discovery and onboarding process and ways to make your API more self-service. Best practices around documentation, sandboxes, and sample code. We also cover particular design traits to keep consistent that will retain happy users.",
   id: 1
-  
 },
 {
   section: "Digital books",

@@ -1,28 +1,38 @@
 import { Box, ImageList, ImageListItem } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
-import data from "@/common/data/data";
+import type Feature from "../../entitles/feature";
 import * as Styled from "./Features.styled";
+import { getFeatures } from "@/gateways/gateway";
+import { useEffect, useState } from "react";
 
 const Features = () => {
+  const [data, setData] = useState<Feature[]>([]);
+  useEffect(() => {
+    getFeatures()
+      .then((res) => {
+        setData(res);
+      })
+  }, []);
+  console.log(data.data)
   return (
-    <ImageList sx={{ width: "100%", margin: "80px 20px" }} cols={4} rowHeight={300}>
+    <Styled.FeaturesBox>
       {data.map(item => {
         return (
-          <ImageListItem key={item.id}>
+          <Box key={item.id}>
             <Link href={`/features/${item.id}`} passHref legacyBehavior>
               <Styled.LinkAnchor>
-                <Box sx={{ display: "flex", alignItems: "center" }}>
-                  <Image src={item.image} alt={item.title} width={200} height={300} />
-                </Box>
+                <Styled.ImageBox sx={{ display: "flex", alignItems: "center" }}>
+                  <Image src={item.image} alt={item.title} width={200} height={300} priority/>
+                </Styled.ImageBox>
               </Styled.LinkAnchor>
 
             </Link>
-          </ImageListItem>
+          </Box>
         )
       })
       }
-    </ImageList>
+    </Styled.FeaturesBox>
 
   );
 };

@@ -1,12 +1,12 @@
 import * as React from 'react';
 import Logo from '../Logo';
-import { Instagram, Facebook, Twitter, YouTube, LinkedIn, GitHub } from '@mui/icons-material';
+import { Facebook, Twitter, YouTube, LinkedIn, GitHub } from '@mui/icons-material';
 import { Button, ButtonGroup } from '@mui/material';
 import * as Styled from './Footer.styled'
 import Link from 'next/link';
 
 const navItems = ['home', 'features', 'contact', 'login'];
-export default function StickyFooter() {
+const Footer=()=> {
   return (
     <Styled.FooterBox>
         <Styled.FooterMenu>
@@ -21,7 +21,6 @@ export default function StickyFooter() {
         </Styled.FooterMenu>
         <Styled.SocialBox >
             <ButtonGroup >
-              <Button><Instagram /></Button>
               <Button> <Facebook /></Button>
               <Button><Twitter /></Button>
               <Button><YouTube /></Button>
@@ -33,3 +32,4 @@ export default function StickyFooter() {
 
   );
 }
+export default Footer;
