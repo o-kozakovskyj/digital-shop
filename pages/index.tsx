@@ -1,7 +1,8 @@
-import Layout from '@/components/Layout'
-import MainBanner1 from '@/components/MainBanner1'
+import Layout from '@/components/Layout';
+import MainBanner1 from '@/components/MainBanner1';
 
-export default function Home() {
+
+const Home = () => {
   return (
     <>
       <Layout>
@@ -10,3 +11,4 @@ export default function Home() {
     </>
   )
 }
+export default Home;

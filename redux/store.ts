@@ -3,7 +3,7 @@ import {
   configureStore,
   ThunkAction,
 } from '@reduxjs/toolkit';
-import cartReducer from './src/components/Cart/CartSlice';
+import cartReducer from '../src/components/Cart/CartSlice';
 import { combineReducers } from "redux";
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage';

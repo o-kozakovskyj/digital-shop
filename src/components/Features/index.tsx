@@ -1,4 +1,4 @@
-import { Box, ImageList, ImageListItem } from "@mui/material";
+import { Box, Button, ImageList, ImageListItem, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import type Feature from "../../entitles/feature";
@@ -7,26 +7,34 @@ import { getFeatures } from "@/gateways/gateway";
 import { useEffect, useState } from "react";
 
 const Features = () => {
-  const [data, setData] = useState<Feature[]>([]);
+  const [features, setFeatures] = useState<Feature[]>([]);
   useEffect(() => {
     getFeatures()
       .then((res) => {
-        setData(res);
+        setFeatures(res);
       })
   }, []);
-  console.log(data.data)
   return (
     <Styled.FeaturesBox>
-      {data.map(item => {
+      <Styled.FilterButtonBox>
+        <Typography>Sort by Author</Typography>
+        <Button>Ascend</Button>
+        <Button>Descend</Button>
+      </Styled.FilterButtonBox>
+      {features.map(item => {
         return (
           <Box key={item.id}>
             <Link href={`/features/${item.id}`} passHref legacyBehavior>
               <Styled.LinkAnchor>
-                <Styled.ImageBox sx={{ display: "flex", alignItems: "center" }}>
-                  <Image src={item.image} alt={item.title} width={200} height={300} priority/>
+                <Styled.ImageBox>
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    width={200}
+                    height={300} priority
+                  />
                 </Styled.ImageBox>
               </Styled.LinkAnchor>
-
             </Link>
           </Box>
         )

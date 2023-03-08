@@ -10,7 +10,11 @@ overflow: hidden;
   padding:20px;
   margin-top: 60px;
 `;
-  
+  export const FilterButtonBox = styled(Box)`
+    display: flex;
+    justify-items: center;
+    align-items: center;
+  `
  export const ImageBox = styled(Box)`
   display: flex;
   align-items: center;

@@ -4,7 +4,7 @@ import {
   PayloadAction,
 } from '@reduxjs/toolkit';
 import { useEffect, useState } from 'react';
-import type { RootState } from '../../../store';
+import type { RootState } from '../../../redux/store';
 
 export type CartState = {
   cart: Feature[];
@@ -19,15 +19,13 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addFeature: (state, action: PayloadAction<Feature>) => {
+      if (state.cart.find((feature) => feature.id === action.payload.id)) {
+        return;
+      }
       state.cart.push({...action.payload});
-     
     },
     deleteFeature: (state, action) => {
-      state.cart.find((feature, index) => {
-        if (feature.id === action.payload) {
-          state.cart.splice(index, 1);
-        }
-      });
+      state.cart = state.cart.filter((feature) => feature.id !== action.payload);
     },
   },
 });

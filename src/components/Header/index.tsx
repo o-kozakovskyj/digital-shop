@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { AppBar, Box, Divider, List, Toolbar, Button, Badge } from '@mui/material';
+import { AppBar, Box, Divider, List, Toolbar, Button, Badge, Avatar } from '@mui/material';
 import Link from 'next/link';
 import { ShoppingBasket, Menu } from '@mui/icons-material';
 import Logo from '../Logo';
 import * as Styled from './Header.styled';
 import { useSelector } from 'react-redux';
 import { selectCart } from '../Cart/CartSlice';
+import { auth } from '../../../firebase/firebaseApp';
 
 interface HeaderProps {
   window?: () => Window;
@@ -33,6 +34,11 @@ const Header = (props: HeaderProps) => {
             </Link>
           </Styled.SideMenuItem>
         ))}
+        <Link href={"/personal"} passHref legacyBehavior>
+          <Styled.LinkAnchor>
+            <Avatar src={`${auth?.currentUser?.photoURL}`} />
+          </Styled.LinkAnchor>
+        </Link>
         <Link href={"/cart"} passHref legacyBehavior>
           <Styled.LinkAnchor>
             <Badge badgeContent={cartList.length} color="error">
@@ -62,11 +68,16 @@ const Header = (props: HeaderProps) => {
                 </Link>
               </Button>
             ))}
+            <Link href={"/personal"} passHref legacyBehavior>
+              <Styled.LinkAnchor>
+                <Avatar src={`${auth?.currentUser?.photoURL}`}  sx={{ width: 24, height: 24 }}/>
+              </Styled.LinkAnchor>
+            </Link>
             <Link href={"/cart"} passHref legacyBehavior>
               <Styled.LinkAnchor>
-              <Badge badgeContent={cartList.length} color="error">
-                <ShoppingBasket fontSize="medium" />
-              </Badge>
+                <Badge badgeContent={cartList.length} color="error">
+                  <ShoppingBasket fontSize="medium" />
+                </Badge>
               </Styled.LinkAnchor>
             </Link>
           </Styled.HeaderMenuBox>
