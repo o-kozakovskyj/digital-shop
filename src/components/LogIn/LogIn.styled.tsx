@@ -1,5 +1,6 @@
 import { Box, Button, Checkbox, FormControlLabel, TextField, Typography } from "@mui/material";
 import styled from "styled-components";
+import { LinkAnchor } from "../Footer/Footer.styled";
 
 export const SignInContainer = styled(Box)`
   margin: auto;
@@ -45,7 +46,7 @@ export const Passwordnput = styled((props) => <TextField {...props}
 )``;
 export const RememberBox = styled((props) => <FormControlLabel
   {...props}
-  control={<Checkbox value="remember" color="primary" />}
+  control={<Checkbox value="remember" color="secondary" />}
   label="Remember me"
   color='secondary'
 />
@@ -61,11 +62,25 @@ border: 1px solid #008c8e;
   margin: 24px 0px;
 `;
 export const SubmitButton = styled((props) => <Button {...props}
-  
+
   fullWidth
   variant="contained"
   color='secondary'
 />
 )`
   margin: 24px 0px;
+`;
+export const Anchor = styled.a`
+  color: #008c8e;
+  text-decoration: none;
+  &:hover {
+    color: #008c8e;
+    text-decoration: none;
+  }
+`;
+export const AlreadyTitle = styled((props) => <Typography {...props} component="h1" variant="h5" />)`
+display: flex;
+  justify-content: space-around;
+  margin: 12px;
+  color: #5a5a5e;
 `;

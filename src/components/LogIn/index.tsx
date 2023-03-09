@@ -1,17 +1,21 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
-import Link from '@mui/material/Link';
+
 import Grid from '@mui/material/Grid';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import {Done, LockOutlined} from '@mui/icons-material';
 import { auth, googleProvider } from '../../../firebase/firebaseApp';
-import {createUserWithEmailAndPassword, signInWithPopup, signOut} from 'firebase/auth';
-import * as Styled from './SignIn.styled';
-import { useEffect } from 'react';
+import { signInWithPopup, signInWithEmailLink, signOut } from 'firebase/auth';
+import * as Styled from './LogIn.styled';
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 
 const Signin = () => {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [logInIcon, setlogInIcon] = useState(<LockOutlined />);
+  const [loginTitle, setLoginTitle] = useState('Log in');
+  const [isLogIn, setIsLogIn] = useState(false);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     if (name === 'email') {
@@ -22,16 +26,18 @@ const Signin = () => {
   };
   const handleSubmit = async () => {
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      await signInWithEmailLink(auth, email, password);
+      setIsLogIn(true);
       setEmail('');
       setPassword('');
     } catch (error) {
       console.error(error);
     }
   };
-  const  googleSubmit = async() => {
+  const googleSubmit = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
+      setIsLogIn(true);
     } catch (error) {
       alert(error);
     }
@@ -39,43 +45,47 @@ const Signin = () => {
   const logOut = async () => {
     try {
       await signOut(auth);
+      setIsLogIn(false);
     } catch (error) {
       console.error(error);
     }
   };
+  useEffect(() => {
+    if (isLogIn) {
+      setlogInIcon(<Done />)
+      setLoginTitle('Logged in')
+    }
+  }, [isLogIn])
   return (
     <Styled.SignInContainer>
       <Avatar>
-        <LockOutlinedIcon />
+        {logInIcon}
       </Avatar>
       <Styled.Title>
-        Sign in
+        {loginTitle}
       </Styled.Title>
       <Styled.Form >
-        <Styled.EmailInput onChange={handleChange } value={email} />
+        <Styled.EmailInput onChange={handleChange} value={email} />
         <Styled.Passwordnput onChange={handleChange} value={password} />
         <Styled.RememberBox />
         <Styled.GoogleButton onClick={googleSubmit}>
-          Sign In with Google
+          Log In with Google
         </Styled.GoogleButton>
         <Styled.SubmitButton onClick={handleSubmit}>
-          Sign In
+          Log In
         </Styled.SubmitButton>
         <Styled.GoogleButton onClick={logOut}>
-          Sign out
+          Log out
         </Styled.GoogleButton>
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 }}>
-          <Grid item xs={5}>
-            <Link href="#" color={"#000"}>
-              Forgot password?
-            </Link>
-          </Grid>
-          <Grid item xs={7}>
-            <Link href="#" color={"#000"}>
-              Don't have an account? Sign Up
-            </Link>
-          </Grid>
-        </Grid>
+        <Styled.AlreadyTitle>
+          Don`t have an account ?
+          <Link href={"/signup"} passHref legacyBehavior>
+            <Styled.Anchor>
+              Sign Up
+            </Styled.Anchor>
+          </Link>
+        </Styled.AlreadyTitle>
+         
       </Styled.Form>
     </Styled.SignInContainer>
 

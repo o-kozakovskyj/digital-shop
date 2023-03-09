@@ -14,34 +14,41 @@ const Features = () => {
         setFeatures(res);
       })
   }, []);
+  const sortbyAuthorAscend = () => {
+    const sortedFeatures = [...features].sort((a, b) => a.author.localeCompare(b.author));
+    setFeatures(sortedFeatures);
+  };
+  const sortbyAuthorDescend = () => {
+    const sortedFeatures = [...features].sort((a, b) => b.author.localeCompare(a.author));
+    setFeatures(sortedFeatures);
+  };
+
   return (
-    <Styled.FeaturesBox>
+    <>
       <Styled.FilterButtonBox>
         <Typography>Sort by Author</Typography>
-        <Button>Ascend</Button>
-        <Button>Descend</Button>
+        <Styled.FilterButton onClick={sortbyAuthorAscend}>Ascend</Styled.FilterButton>
+        <Styled.FilterButton onClick={sortbyAuthorDescend}>Descend</Styled.FilterButton>
       </Styled.FilterButtonBox>
-      {features.map(item => {
-        return (
-          <Box key={item.id}>
-            <Link href={`/features/${item.id}`} passHref legacyBehavior>
-              <Styled.LinkAnchor>
-                <Styled.ImageBox>
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    width={200}
-                    height={300} priority
-                  />
-                </Styled.ImageBox>
-              </Styled.LinkAnchor>
-            </Link>
-          </Box>
-        )
-      })
-      }
-    </Styled.FeaturesBox>
-
+      <Styled.FeaturesBox>
+        {features.map(item => {
+          return (
+            <Box key={item.id}>
+              <Link href={`/features/${item.id}`} passHref legacyBehavior>
+                <Styled.LinkAnchor>
+                  <Styled.ImageBox>
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      width={200}
+                      height={300} priority />
+                  </Styled.ImageBox>
+                </Styled.LinkAnchor>
+              </Link>
+            </Box>
+          );
+        })}
+      </Styled.FeaturesBox></>
   );
 };
 export default Features;

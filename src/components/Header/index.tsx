@@ -7,19 +7,23 @@ import * as Styled from './Header.styled';
 import { useSelector } from 'react-redux';
 import { selectCart } from '../Cart/CartSlice';
 import { auth } from '../../../firebase/firebaseApp';
+import DialogWindow from '../DialogWindow';
+import { useEffect, useState } from 'react';
 
 interface HeaderProps {
   window?: () => Window;
 }
-const navItems = ['home', 'features', 'contact', 'login'];
+const navItems = ['home', 'features', 'contact', 'signup', 'login'];
 
 const Header = (props: HeaderProps) => {
   const cartList = useSelector(selectCart);
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const handleDrawerToggle = () => {
-    setMobileOpen((prevState) => !prevState);
+    setMobileOpen(!mobileOpen);
   };
+
   const drawer = (
     <Box onClick={handleDrawerToggle}>
       <Logo />
@@ -50,6 +54,18 @@ const Header = (props: HeaderProps) => {
     </Box>
   );
   const container = window !== undefined ? () => window().document.body : undefined;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const personalLink = isLoggedIn ? '/personal' : '/login';
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
+    });
+  }, []);
+  
   return (
     <Styled.HeaderBox>
       <AppBar component="nav">
@@ -68,7 +84,7 @@ const Header = (props: HeaderProps) => {
                 </Link>
               </Button>
             ))}
-            <Link href={"/personal"} passHref legacyBehavior>
+            <Link href={personalLink} passHref legacyBehavior>
               <Styled.LinkAnchor>
                 <Avatar src={`${auth?.currentUser?.photoURL}`}  sx={{ width: 24, height: 24 }}/>
               </Styled.LinkAnchor>
@@ -96,3 +112,7 @@ const Header = (props: HeaderProps) => {
   );
 }
 export default Header;
+
+function setIsDialogOpen(arg0: boolean): void {
+  throw new Error('Function not implemented.');
+}
