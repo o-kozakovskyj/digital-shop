@@ -24,11 +24,11 @@ margin:80px auto;
 export const Cell = styled(TableCell)`
   color:#008c8e;
 `;
-export const ImageBox= styled(Box)`
+export const ImageBox = styled(Box)`
 display: flex;
 align-items: center;
 `;
-export const Title=styled(Box)`
+export const Title = styled(Box)`
   color: #008c8e;
   margin-left: 10px;
 `;

@@ -1,5 +1,5 @@
-import { Button } from "@mui/material"
-import Image from "next/image"
+import { Button } from "@mui/material";
+import Image from "next/image";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Link from "next/link";
 import * as Styled from './MainBanner1.styled';
@@ -15,7 +15,11 @@ const MainBanner1: React.FC = () => {
           audiobooks, e-books, photography, software, memberships, event tickets, online courses, and much more.
         </Styled.Text>
         <Button>
-          <Link href={"/features"} passHref legacyBehavior>
+          <Link
+            href={"/features"}
+            passHref
+            legacyBehavior
+          >
             <Styled.LinkAnchor>
               Explore our features
               <ArrowForwardIcon />
@@ -33,7 +37,6 @@ const MainBanner1: React.FC = () => {
         </Image>
       </Styled.ImageBox>
     </Styled.BannerBox>
-  )
-
+  );
 }
 export default MainBanner1;

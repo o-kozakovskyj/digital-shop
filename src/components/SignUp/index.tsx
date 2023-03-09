@@ -1,13 +1,11 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
-import { LockOutlined, LockOpen, Done } from '@mui/icons-material';
+import { LockOutlined, Done } from '@mui/icons-material';
 import { auth, googleProvider } from '../../../firebase/firebaseApp';
 import { createUserWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-import * as Styled from './SignUp.styled';
 import { useEffect, useState } from 'react';
-import { Typography } from '@mui/material';
 import Link from 'next/link';
-
+import * as Styled from './SignUp.styled';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -50,7 +48,6 @@ const SignUp = () => {
 
   return (
     <Styled.SignInContainer>
-
       <Avatar>
         {logInIcon}
       </Avatar>
@@ -60,7 +57,6 @@ const SignUp = () => {
       <Styled.Form >
         <Styled.EmailInput onChange={handleChange} value={email} />
         <Styled.Passwordnput onChange={handleChange} value={password} />
-        
         <Styled.RememberBox />
         <Styled.GoogleButton onClick={googleSubmit}>
           Sign Up with Google
@@ -70,14 +66,17 @@ const SignUp = () => {
         </Styled.SubmitButton>
         <Styled.AlreadyTitle>
           Already have an account ?
-          <Link href={"/login"} passHref legacyBehavior>
+          <Link
+            href={"/login"}
+            passHref
+            legacyBehavior
+          >
             <Styled.Anchor>
               Login
             </Styled.Anchor>
           </Link>
         </Styled.AlreadyTitle>
       </Styled.Form>
-      
     </Styled.SignInContainer>
   );
 }

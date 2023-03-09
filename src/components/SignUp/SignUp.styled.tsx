@@ -1,6 +1,12 @@
-import { Box, Button, Checkbox, FormControlLabel, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Checkbox,
+  FormControlLabel,
+  TextField,
+  Typography
+} from "@mui/material";
 import styled from "styled-components";
-import { LinkAnchor } from "../Footer/Footer.styled";
 
 export const SignInContainer = styled(Box)`
   margin: auto;
@@ -15,11 +21,23 @@ export const SignInContainer = styled(Box)`
     background-color:#008c8e 
   }
 `
-export const Title = styled((props) => <Typography {...props} component="h1" variant="h5" />)``
-export const Form = styled((props) => <Box {...props} component="form" noValidate />)`
+export const Title = styled((props) => <Typography
+  {...props}
+  component="h1"
+  variant="h5"
+/>)``;
+
+export const Form = styled((props) => <Box
+  {...props}
+  component="form"
+  noValidate
+/>
+)`
   margin-top: 8px;
-`
-export const EmailInput = styled((props) => <TextField {...props}
+`;
+
+export const EmailInput = styled((props) => <TextField
+  {...props}
   margin="normal"
   required
   fullWidth
@@ -32,7 +50,8 @@ export const EmailInput = styled((props) => <TextField {...props}
 />
 )``;
 
-export const Passwordnput = styled((props) => <TextField {...props}
+export const Passwordnput = styled((props) => <TextField
+  {...props}
   margin="normal"
   required
   fullWidth
@@ -62,7 +81,6 @@ border: 1px solid #008c8e;
   margin: 24px 0px;
 `;
 export const SubmitButton = styled((props) => <Button {...props}
-  
   fullWidth
   variant="contained"
   color='secondary'

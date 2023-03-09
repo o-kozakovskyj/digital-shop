@@ -22,7 +22,7 @@ export const HeaderBox = styled(Box)`
     justify-content: space-between;
   }
 `
-export const MenuButton = styled((props) => <IconButton {...props} color="inherit" aria-label="open drawer"edge="start"/>)`
+export const MenuButton = styled((props) => <IconButton {...props} color="inherit" aria-label="open drawer" edge="start" />)`
 margin-right: 2rem;
 @media (min-width: 600px) {
   display: none;
@@ -43,7 +43,7 @@ display: none;
   }
 }
 `
-export const SideMenuBox = styled((props)=> <Drawer {...props} variant="temporary" anchor="left" ModalProps={{keepMounted: true}} />)`
+export const SideMenuBox = styled((props) => <Drawer {...props} variant="temporary" anchor="left" ModalProps={{ keepMounted: true }} />)`
   display: block;
   @media (min-width: 600px) {
     display: none;

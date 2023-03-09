@@ -1,16 +1,13 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
-
-import Grid from '@mui/material/Grid';
-import {Done, LockOutlined} from '@mui/icons-material';
+import { Done, LockOutlined } from '@mui/icons-material';
 import { auth, googleProvider } from '../../../firebase/firebaseApp';
 import { signInWithPopup, signInWithEmailLink, signOut } from 'firebase/auth';
-import * as Styled from './LogIn.styled';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import * as Styled from './LogIn.styled';
 
-
-const Signin = () => {
+const Signin:React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [logInIcon, setlogInIcon] = useState(<LockOutlined />);
@@ -79,17 +76,17 @@ const Signin = () => {
         </Styled.GoogleButton>
         <Styled.AlreadyTitle>
           Don`t have an account ?
-          <Link href={"/signup"} passHref legacyBehavior>
+          <Link
+            href={"/signup"}
+            passHref
+            legacyBehavior>
             <Styled.Anchor>
               Sign Up
             </Styled.Anchor>
           </Link>
         </Styled.AlreadyTitle>
-         
       </Styled.Form>
     </Styled.SignInContainer>
-
-
   );
 }
 export default Signin;

@@ -1,10 +1,11 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Button
+} from '@mui/material';
 import Link from 'next/link';
 
 type DialogWindowProps = {
@@ -12,8 +13,8 @@ type DialogWindowProps = {
   isDialogOpen: boolean;
   message: string;
 };
-const DialogWindow: React.FC<DialogWindowProps>=({onclose, isDialogOpen, message})=> {
-  
+const DialogWindow: React.FC<DialogWindowProps> = ({ onclose, isDialogOpen, message }) => {
+
   return (
     <div>
       <Dialog
@@ -25,12 +26,15 @@ const DialogWindow: React.FC<DialogWindowProps>=({onclose, isDialogOpen, message
           {message}
         </DialogTitle>
         <DialogContent>
-          
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => onclose()} sx={{color: "#000"}}>Close</Button>
+          <Button onClick={() => onclose()} sx={{ color: "#000" }}>
+            Close
+          </Button>
           <Button autoFocus onClick={() => onclose}>
-           <Link href={"/login"}>Login</Link>
+            <Link href={"/login"}>
+              Login
+            </Link>
           </Button>
         </DialogActions>
       </Dialog>

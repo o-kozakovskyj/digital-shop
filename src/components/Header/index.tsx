@@ -3,27 +3,24 @@ import { AppBar, Box, Divider, List, Toolbar, Button, Badge, Avatar } from '@mui
 import Link from 'next/link';
 import { ShoppingBasket, Menu } from '@mui/icons-material';
 import Logo from '../Logo';
-import * as Styled from './Header.styled';
 import { useSelector } from 'react-redux';
 import { selectCart } from '../Cart/CartSlice';
 import { auth } from '../../../firebase/firebaseApp';
-import DialogWindow from '../DialogWindow';
 import { useEffect, useState } from 'react';
+import * as Styled from './Header.styled';
 
 interface HeaderProps {
   window?: () => Window;
 }
 const navItems = ['home', 'features', 'contact', 'signup', 'login'];
 
-const Header = (props: HeaderProps) => {
+const Header: React.FC = (props: HeaderProps) => {
   const cartList = useSelector(selectCart);
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-
   const drawer = (
     <Box onClick={handleDrawerToggle}>
       <Logo />
@@ -31,19 +28,30 @@ const Header = (props: HeaderProps) => {
       <List>
         {navItems.map((item) => (
           <Styled.SideMenuItem key={item}>
-            <Link href={item === 'home' ? '/' : `/${item}`} passHref legacyBehavior>
+            <Link
+              href={item === 'home' ? '/' : `/${item}`}
+              passHref
+              legacyBehavior
+            >
               <Styled.LinkAnchor>
                 {item.toUpperCase()}
               </Styled.LinkAnchor>
             </Link>
           </Styled.SideMenuItem>
         ))}
-        <Link href={"/personal"} passHref legacyBehavior>
+        <Link
+          href={"/personal"}
+          passHref
+          legacyBehavior
+        >
           <Styled.LinkAnchor>
             <Avatar src={`${auth?.currentUser?.photoURL}`} />
           </Styled.LinkAnchor>
         </Link>
-        <Link href={"/cart"} passHref legacyBehavior>
+        <Link href={"/cart"}
+          passHref
+          legacyBehavior
+        >
           <Styled.LinkAnchor>
             <Badge badgeContent={cartList.length} color="error">
               <ShoppingBasket fontSize="medium" />
@@ -65,7 +73,7 @@ const Header = (props: HeaderProps) => {
       }
     });
   }, []);
-  
+
   return (
     <Styled.HeaderBox>
       <AppBar component="nav">
@@ -79,14 +87,23 @@ const Header = (props: HeaderProps) => {
           <Styled.HeaderMenuBox>
             {navItems.map((item) => (
               <Button key={item}>
-                <Link href={item === 'home' ? '/' : `/${item}`} passHref legacyBehavior>
-                  <Styled.LinkAnchor>{item}</Styled.LinkAnchor>
+                <Link
+                  href={item === 'home' ? '/' : `/${item}`}
+                  passHref
+                  legacyBehavior
+                >
+                  <Styled.LinkAnchor>
+                    {item}
+                  </Styled.LinkAnchor>
                 </Link>
               </Button>
             ))}
-            <Link href={personalLink} passHref legacyBehavior>
+            <Link
+              href={personalLink}
+              passHref
+              legacyBehavior>
               <Styled.LinkAnchor>
-                <Avatar src={`${auth?.currentUser?.photoURL}`}  sx={{ width: 24, height: 24 }}/>
+                <Avatar src={`${auth?.currentUser?.photoURL}`} sx={{ width: 24, height: 24 }} />
               </Styled.LinkAnchor>
             </Link>
             <Link href={"/cart"} passHref legacyBehavior>
@@ -113,6 +130,4 @@ const Header = (props: HeaderProps) => {
 }
 export default Header;
 
-function setIsDialogOpen(arg0: boolean): void {
-  throw new Error('Function not implemented.');
-}
+

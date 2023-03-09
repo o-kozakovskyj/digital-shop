@@ -10,7 +10,7 @@ overflow: hidden;
   padding:20px;
   margin-top: 10px;
 `;
-  export const FilterButtonBox = styled(Box)`
+export const FilterButtonBox = styled(Box)`
     display: flex;
     justify-items: center;
     align-items: center;
@@ -45,14 +45,14 @@ export const FilterButton = styled(Button)`
 `;
 
 
- export const ImageBox = styled(Box)`
+export const ImageBox = styled(Box)`
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 10px;
 `;
 
-  
+
 export const LinkAnchor = styled.a`
   color: #5a5a5e;
   text-decoration: none;

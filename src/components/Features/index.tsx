@@ -26,9 +26,15 @@ const Features = () => {
   return (
     <>
       <Styled.FilterButtonBox>
-        <Typography>Sort by Author</Typography>
-        <Styled.FilterButton onClick={sortbyAuthorAscend}>Ascend</Styled.FilterButton>
-        <Styled.FilterButton onClick={sortbyAuthorDescend}>Descend</Styled.FilterButton>
+        <Typography>
+          Sort by Author
+        </Typography>
+        <Styled.FilterButton onClick={sortbyAuthorAscend}>
+          Ascend
+        </Styled.FilterButton>
+        <Styled.FilterButton onClick={sortbyAuthorDescend}>
+          Descend
+        </Styled.FilterButton>
       </Styled.FilterButtonBox>
       <Styled.FeaturesBox>
         {features.map(item => {
@@ -41,14 +47,16 @@ const Features = () => {
                       src={item.image}
                       alt={item.title}
                       width={200}
-                      height={300} priority />
+                      height={300} priority
+                    />
                   </Styled.ImageBox>
                 </Styled.LinkAnchor>
               </Link>
             </Box>
           );
         })}
-      </Styled.FeaturesBox></>
+      </Styled.FeaturesBox>
+    </>
   );
 };
 export default Features;
