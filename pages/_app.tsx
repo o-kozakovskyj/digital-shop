@@ -12,7 +12,6 @@ interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
 const clientSideEmotionCache = createEmotionCache();
-
 const MyApp: React.FunctionComponent<MyAppProps> = props => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   return (
@@ -20,7 +19,7 @@ const MyApp: React.FunctionComponent<MyAppProps> = props => {
       <PersistGate loading={null} persistor={persistor}>
         <Head>
           <title>Digital shop</title>
-          <meta name="description" content="Live sport matches" />
+          <meta name="description" content="Digital Books shop" />
           <link rel="icon" href="/images/favicon.ico" />
         </Head>
         <CacheProvider value={emotionCache}>
