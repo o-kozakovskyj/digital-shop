@@ -7,8 +7,8 @@ import { auth } from '../../../firebase/firebaseApp';
 import DialogWindow from '../DialogWindow';
 import { useEffect, useState } from 'react';
 import { getFeature } from "@/gateways/gateway";
-import * as Styled from './FeaturePage.styled';
 import Feature from '@/entitles/feature';
+import * as Styled from './FeaturePage.styled';
 
 const FeaturePage = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
